@@ -1,7 +1,7 @@
 
 public class Player {
-    private final char piece; //x or o
-    private int numPieces; //number of pieces player owns
+    private final char piece; //w or b
+    private int numPieces; //number of checkers player owns
 
     public Player (char p) {
         this.piece = p;

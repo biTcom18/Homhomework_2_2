@@ -59,9 +59,9 @@ public class Entry<K, V> implements Map.Entry<K, V> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Entry)) return false;
-        Entry<?, ?> entry = (Entry<?, ?>) o;
-        return Objects.equals(getKey(), entry.getKey()) && Objects.equals(val, entry.val);
+        if (!(o instanceof Entry<?, ?> entry)) return false;
+        return Objects.equals(getKey(), entry.getKey())
+                && Objects.equals(val, entry.val);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Entry<K, V> implements Map.Entry<K, V> {
 
 
     public String toString() {
-        return "("+this.key+", "+this.val+")";
+        return "("+ this.key + ", " + this.val + ")";
     }
 
 }

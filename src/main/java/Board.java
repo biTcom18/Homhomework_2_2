@@ -1,14 +1,14 @@
 
 
 public class Board {
-    static final int LEN = 8;
+    static final int LENGTH = 8;
     static final int WIDTH = 8;
     private Character[][] board;
 
     public Board () {
-        board = new Character[LEN][WIDTH];
+        board = new Character[LENGTH][WIDTH];
         //Initializing board values
-        for (int i = LEN-1; i >= 0; i--) { // rows/numbers
+        for (int i = LENGTH-1; i >= 0; i--) { // rows/numbers
             for (int j = 0; j < WIDTH ; j++) { // columns/letters
                 if (i == 3 || i == 4) board [i][j] = ' '; //empty rows 4 and 5
                 else if (i > 4 && i % 2 == 0 && j % 2 == 0) board[i][j] = 'b';
@@ -25,7 +25,7 @@ public class Board {
      * @param b
      */
     public Board(Board b) {
-        for (int i = LEN-1; i >= 0; i--) {
+        for (int i = LENGTH-1; i >= 0; i--) {
             for (int j = 0; j < WIDTH; j++) {
                 assert false;
                 this.board[i][j] = b.getSpace(new Entry<>(i, j));
@@ -68,22 +68,21 @@ public class Board {
         this.updateToKing(newPos, curTurn);
     }
 
-    public void setSpace(Entry<Integer, Integer> pos, char c) {
+    public void setSpace(Entry<Integer, Integer> pos, char c)  {
         this.board[pos.getKey()][pos.getValue()] = c;
     }
-
     public String toString() {
-      String temp = "  ---------------------------------\n";
-        temp += "  ---------------------------------\n";
-        for (int i = LEN-1; i >= 0; i--) {
-            temp += i+1;
+      StringBuilder temp = new StringBuilder("  ---------------------------------\n");
+        temp.append("  ---------------------------------\n");
+        for (int i = LENGTH-1; i >= 0; i--) {
+            temp.append(i + 1);
             for (int j = 0; j < WIDTH; j++) {
-                temp += " | " + board[i][j];
+                temp.append(" | ").append(board[i][j]);
             }
-            temp += " |\n  ---------------------------------\n";
+            temp.append(" |\n  ---------------------------------\n");
         }
-        temp += "    A   B   C   D   E   F   G   H \n";
-        return temp;
+        temp.append("    A   B   C   D   E   F   G   H \n");
+        return temp.toString();
     }
 
 }
