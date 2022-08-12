@@ -1,5 +1,6 @@
 
 import java.util.Map;
+import java.util.Objects;
 
 
 public class Entry<K, V> implements Map.Entry<K, V> {
@@ -56,20 +57,19 @@ public class Entry<K, V> implements Map.Entry<K, V> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Entry other = (Entry) obj;
-        if (this.key != other.key)
-            return false;
-        if (this.val != other.val)
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Entry)) return false;
+        Entry<?, ?> entry = (Entry<?, ?>) o;
+        return Objects.equals(getKey(), entry.getKey()) && Objects.equals(val, entry.val);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getKey(), val);
+    }
+
+
 
     public String toString() {
         return "("+this.key+", "+this.val+")";
